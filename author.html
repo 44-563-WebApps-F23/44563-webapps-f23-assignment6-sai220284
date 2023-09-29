@@ -40,5 +40,43 @@ function resolveForm (){
 }
 </script>
 
+<h1>Author Guessing Game</h1>
+    
+    <form>
+        <label for="hiddenAuthor">The hidden author name:</label>
+        <input type="password" id="hiddenAuthor" value="Dickens">
+        <br>
+        
+        <label for="guessAuthor">Guess the author:</label>
+        <input type="text" id="guessAuthor">
+        <br>
+        
+        <input type="button" value="Check the guess" onclick="checkAuthor()">
+    </form>
+    
+    <p>Score: <span id="score">0 / 0</span></p>
+    
+    <script>        
+        let good = 0;
+        let oops = 0;
+        function checkAuthor() {         
+            const hiddenAuthor = document.getElementById('hiddenAuthor').value;
+            const guessAuthor = document.getElementById('guessAuthor').value;
+            if (hiddenAuthor === guessAuthor)
+             {
+                good++;
+                alert('You got it right!');
+            }
+             else 
+            {
+                oops++;
+                alert('Sorry');
+            }
+            const scoreElement = document.getElementById('score');
+            scoreElement.textContent = `${good} / ${good + oops}`;
+        }
+    </script>
 </body>
-</html> 
+</html>
+
+
