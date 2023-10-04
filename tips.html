@@ -63,5 +63,66 @@ function resolveForm (){
             document.getElementById("tipResults").innerHTML = "Tips are: " + toShow;
         }
     </script>
+
+
+
+    <!--------------creating  radio button group that switches between calculations --------------->
+
+    <form>
+        <input type="radio" id="rg1_red" name="operation" value="sum"   
+          checked >
+        <label for="rg1_red">sum</label></br>
+      
+        <input type="radio" id="rg1_blue" name="operation" 
+           value="difference">
+        <label for="rg1_blue">difference</label></br>
+      
+        <input type="radio" id="rg1_green" name="operation"   
+           value="product">
+        <label for="rg1_green">product</label></br>
+
+        <input type="button" onclick="chooseOp()" value="Get values from radio group">
+      </form>
+    
+    <p id="operationResult"></p>
+
+    <script>
+        function tips() {
+            var baseValue = parseFloat(document.getElementById("baseAmount").value);
+            var tipValue = parseFloat(document.getElementById("tipPercent").value);
+            var toShow = "";    
+            for (var i = 0; i < 5; i++) {
+                var calculatedTip = (baseValue * (tipValue + i * 4)) / 100;
+                toShow += (tipValue + i * 4) + "% is " + calculatedTip.toFixed(2) + "; "; }    
+            document.getElementById("tipResults").innerHTML = "Tips are: " + toShow; }    
+        function chooseOp() {
+            var baseValue = parseFloat(document.getElementById("baseAmount").value);
+            var tipValue = parseFloat(document.getElementById("tipPercent").value);
+            var operationResult = document.getElementById("operationResult");
+            var operationType = "";               
+            var radioButtons = document.getElementsByName("operation");
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    operationType = radioButtons[i].value;
+                    break; }     }    
+            var result = 0;    
+                switch (operationType) {
+                case "sum":
+                    result = baseValue + tipValue;
+                    break;
+                case "difference":
+                    result = baseValue - tipValue;
+                    break;
+                case "product":
+                    result = baseValue * tipValue;
+                    break;
+            }    
+            operationResult.innerHTML = `${operationType} of ${baseValue} and ${tipValue} is ${result}`;
+        }
+    </script>  
+
+
+
+
 </body>
 </html> 
